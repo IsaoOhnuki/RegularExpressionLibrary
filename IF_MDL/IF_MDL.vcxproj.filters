@@ -87,7 +87,7 @@
     <ClInclude Include="RegExp_Vender.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\RegularExpressionLibrary_\IF_MDL\RegExp_RTF_parser.h">
+    <ClInclude Include="RegExp_RTF_parser.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

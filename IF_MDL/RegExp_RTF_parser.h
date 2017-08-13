@@ -23,16 +23,6 @@ enum reg_rtf_parse_state
 
 static iregexp_builder reg_rtf_parser(void)
 {
-	//iregexp_builder reg = ch_p('{') >> ++ +capture_p(++ +not_p("{}") | call_p(0)) >> ch_p('}');
-
-	//// {(\\\*|\\'[[:xdigit:]]{2}|\\[[:alpha:]]++[[:digit:]]*\s?|[^{}]++|(?R0))*}
-	//iregexp_builder reg =
-	//	ch_p('{')
-	//		>> *capture_p(
-	//			str_p("\\*") | str_p("\\'") >> xdigit_p().set_limit(2, 2) | ch_p('\\') >> +alpha_p() >> *digit_p() >> !space_p() | +not_p("{}") | call_p(0))
-	//		>> ch_p('}')
-	//	;
-
 	iregexp_builder reg =
 		str_p("{\\rtf1") >> capture_p(
 			while_p(
