@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Sun Aug 13 22:03:40 2017
+/* at Sun Aug 13 22:11:37 2017
  */
 /* Compiler settings for IF_MDL.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -50,7 +50,7 @@
 #include "IF_MDL_i.h"
 
 #define TYPE_FORMAT_STRING_SIZE   139                               
-#define PROC_FORMAT_STRING_SIZE   835                               
+#define PROC_FORMAT_STRING_SIZE   883                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   1            
@@ -877,6 +877,49 @@ static const IF_MDL_MIDL_PROC_FORMAT_STRING IF_MDL__MIDL_ProcFormatString =
 /* 832 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
+	/* Procedure rtf_text */
+
+/* 834 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 836 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 840 */	NdrFcShort( 0x15 ),	/* 21 */
+/* 842 */	NdrFcShort( 0x14 ),	/* x86 Stack size/offset = 20 */
+/* 844 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 846 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 848 */	0x47,		/* Oi2 Flags:  srv must size, clt must size, has return, has ext, */
+			0x4,		/* 4 */
+/* 850 */	0x8,		/* 8 */
+			0x7,		/* Ext Flags:  new corr desc, clt corr check, srv corr check, */
+/* 852 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 854 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 856 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter rtf */
+
+/* 858 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 860 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 862 */	NdrFcShort( 0x5e ),	/* Type Offset=94 */
+
+	/* Parameter size */
+
+/* 864 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 866 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 868 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter text */
+
+/* 870 */	NdrFcShort( 0x2113 ),	/* Flags:  must size, must free, out, simple ref, srv alloc size=8 */
+/* 872 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 874 */	NdrFcShort( 0x50 ),	/* Type Offset=80 */
+
+	/* Return value */
+
+/* 876 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 878 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 880 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
 			0x0
         }
     };
@@ -1123,7 +1166,8 @@ static const unsigned short IIFRegExp_FormatStringOffsetTable[] =
     660,
     702,
     762,
-    798
+    798,
+    834
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IIFRegExp_ProxyInfo =
@@ -1147,7 +1191,7 @@ static const MIDL_SERVER_INFO IIFRegExp_ServerInfo =
     0,
     0,
     0};
-CINTERFACE_PROXY_VTABLE(21) _IIFRegExpProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(22) _IIFRegExpProxyVtbl = 
 {
     &IIFRegExp_ProxyInfo,
     &IID_IIFRegExp,
@@ -1171,7 +1215,8 @@ CINTERFACE_PROXY_VTABLE(21) _IIFRegExpProxyVtbl =
     (void *) (INT_PTR) -1 /* IIFRegExp::MatchLength */ ,
     (void *) (INT_PTR) -1 /* IIFRegExp::SetPatternData */ ,
     (void *) (INT_PTR) -1 /* IIFRegExp::get_ParserString */ ,
-    (void *) (INT_PTR) -1 /* IIFRegExp::get_PatternString */
+    (void *) (INT_PTR) -1 /* IIFRegExp::get_PatternString */ ,
+    (void *) (INT_PTR) -1 /* IIFRegExp::rtf_text */
 };
 
 
@@ -1194,6 +1239,7 @@ static const PRPC_STUB_FUNCTION IIFRegExp_table[] =
     NdrStubCall2,
     NdrStubCall2,
     NdrStubCall2,
+    NdrStubCall2,
     NdrStubCall2
 };
 
@@ -1201,7 +1247,7 @@ CInterfaceStubVtbl _IIFRegExpStubVtbl =
 {
     &IID_IIFRegExp,
     &IIFRegExp_ServerInfo,
-    21,
+    22,
     &IIFRegExp_table[-3],
     CStdStubBuffer_DELEGATING_METHODS
 };

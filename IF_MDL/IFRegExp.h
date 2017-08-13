@@ -8,6 +8,7 @@
 
 #include "IFRegVender.h"
 #include "RegExp_Parser.h"
+#include "RegExp_RTF_Parser.h"
 //#include "mem_container.h"
 
 #if defined(_WIN32_WCE) && !defined(_CE_DCOM) && !defined(_CE_ALLOW_SINGLE_THREADED_OBJECTS_IN_MTA)
@@ -159,6 +160,7 @@ public:
 	STDMETHOD(get_RegOption)(TRegExpOption* pVal);
 	STDMETHOD(put_RegOption)(TRegExpOption newVal);
 	STDMETHOD(get_Vender)(IIFRegVender** pVal);
+	STDMETHOD(rtf_text)(BSTR rtf, ULONG size, BSTR* text);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(IFRegExp), CIFRegExp)

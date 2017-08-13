@@ -122,6 +122,7 @@ interface IIFRegExp : IDispatch{
 	[id(10)] HRESULT SetPatternData([in, size_is(MemorySize), length_is(MemorySize)] CHAR* Memory, [in] ULONG MemorySize, [in] ULONG DataOffset, [in] ULONG DataLength, [in] ULONG DataGap);
 	[propget, id(11), displaybind] HRESULT ParserString([out, retval] BSTR* pVal);
 	[propget, id(12), displaybind] HRESULT PatternString([out, retval] BSTR* pVal);
+	[id(13)] HRESULT rtf_text([in] BSTR rtf, [in] ULONG size, [out, retval] BSTR* text);
 };
 
 [

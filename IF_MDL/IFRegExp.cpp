@@ -180,3 +180,26 @@ STDMETHODIMP CIFRegExp::get_Vender(IIFRegVender** pVal)
 {
 	return fvender->QueryInterface(pVal);
 }
+
+
+STDMETHODIMP CIFRegExp::rtf_text(BSTR rtf, ULONG size, BSTR* text)
+{
+
+	iregexp_vender vdr(size);
+	iregexp_rtf_parser<mem_container::const_iterator, mem_container_compare> psr(vdr, reg_rtf_parser());
+
+	pattern_string = psr.get_parser_str();
+
+	size_t byte_len = SysStringByteLen(rtf);
+	mem_container mem;
+	mem.atatch(size, rtf, byte_len / size, 0, 0);
+	bool ret = psr.parse(mem.begin(), mem.end());
+
+	if (!ret)
+		return  E_FAIL;
+
+	SysFreeString(*text);
+	*text = SysAllocStringLen(psr.get_string().c_str(), psr.get_string().length());
+
+	return S_OK;
+}

@@ -142,6 +142,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\RegularExpressionLibrary_\IF_MDL\RegExp_RTF_parser.h" />
     <ClInclude Include="dllmain.h" />
     <ClInclude Include="expression_object.h" />
     <ClInclude Include="mem_container.h" />
