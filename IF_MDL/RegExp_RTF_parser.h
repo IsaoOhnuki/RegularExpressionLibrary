@@ -24,41 +24,71 @@ enum reg_rtf_parse_state
 static iregexp_builder reg_rtf_parser(void)
 {
 	iregexp_builder reg =
-		str_p("{\\rtf1") >> capture_p(
+		str_p("{\\rtf1")
+		>> capture_p(
 			while_p(
+				// main select
 				map_select_p("main")
+				// main - 1
 				.case_p(ch_p('\\') >> capture_p("control", ++ + alpha_p()) >> !if_action_p(rrpsParam, !if_action_p(rrpsParamSign, ch_p('-')) >> ++ + digit_p()) >> !ch_p(' '))
+				// main - 2
 				.case_p(str_p("\\*"))
+				// main - 3
 				.case_p(ch_p('\\') >> capture_p("esc_char", ch_p("\\{}")))
+				// main - 4
 				.case_p(ch_p('\\') >> ch_p("|~-_:"))
+				// main - 5
 				.case_p(str_p("\\'") >> action_p(rrpsXParam, ++xdigit_p().set_limit(2, 2)))
+				// main - 6
 				.case_p(ch_p('{') >> map_push_p() >> *ch_p("\r\n") >> call_p(1) >> ch_p('}') >> map_pop_p())
+				// main - 7
 				.case_p(capture_p("char", not_p("\\{}\r\n")))
 				>> *ch_p("\r\n")
+				// main switch
 				, map_switch_p("main")
+				// main - 1
 				.case_p(
+					// state switch
 					map_switch_p("state")
+					// state fonttbl
 					.case_p(true_p())
+					// state colortbl
 					.case_p(list_select_p(rrpsMakeColor, "control", "red,green,blue,") | true_p())
+					// state stylesheet
 					.case_p(true_p())
+					// state footnote
 					.case_p(true_p())
+					// state header
 					.case_p(true_p())
+					// state footer
 					.case_p(true_p())
+					// state pict
 					.case_p(true_p())
+					// state info
 					.case_p(true_p())
+					// state default
 					.default_p(
 						select_p(rrpsDefault)
-						.case_p(set_map_p("control", "fonttbl,colortbl,stylesheet,footnote,header,footer,pict,info,", "state"))
+						.case_p(
+							// state set
+							set_map_p("control", "fonttbl,colortbl,stylesheet,footnote,header,footer,pict,info,", "state")
+						)
 						.case_p(list_select_p(rrpsDefParam, "control", "ansicpg,deff,deflang,"))
 						.case_p(comp_map_not_p(0, "text_state") >> list_select_p(rrpsParParam, "control", "par,"))
 						.case_p(true_p())
 					)
 				)
+				// main - 2
 				.case_p(set_map_p(0, "text_state"))
+				// main - 3
 				.case_p(comp_map_not_p(0, "text_state") >> list_select_p(rrpsSetEscChar, "esc_char", "\\,{,},") | true_p())
+				// main - 4
 				.case_p(true_p())
+				// main - 5
 				.case_p(comp_map_not_p(0, "text_state") >> comp_map_equal_p(-1, "state") >> func_p(rrpsSetXChar) | true_p())
+				// main - 6
 				.case_p(true_p())
+				// main - 7
 				.case_p(
 					map_switch_p("state")
 					.case_p(comp_map_not_p(0, "text_state") >> func_p(rrpsSetChar) | true_p())
@@ -72,7 +102,8 @@ static iregexp_builder reg_rtf_parser(void)
 					.default_p(comp_map_not_p(0, "text_state") >> func_p(rrpsSetChar) | true_p())
 				)
 			)
-		) >> ch_p('}')
+		)
+		>> ch_p('}')
 		;
 	return std::move(reg);
 }
