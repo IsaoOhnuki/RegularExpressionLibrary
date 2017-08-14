@@ -61,7 +61,7 @@ static iregexp_builder reg_rtf_parser(void)
 				.case_p(true_p())
 				.case_p(
 					map_switch_p("state")
-					.case_p(/*comp_map_not_p(0, "text_state") >> func_p(rrpsSetChar) |*/ true_p())
+					.case_p(comp_map_not_p(0, "text_state") >> func_p(rrpsSetChar) | true_p())
 					.case_p(list_select_p(rrpsSetColor, "char", ";,"))
 					.case_p(true_p())
 					.case_p(true_p())
